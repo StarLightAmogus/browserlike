@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "evidence": {
+    "approx-2026": "Approximate desktop shares and OS versions for 2026, not measured by us; tune for your traffic",
+    "chromium-source": "How Chromium reports sec-ch-ua-platform-version: Windows = UniversalApiContract version, macOS = OS version, Linux = kernel version"
+  },
+  "platform_weights": {
+    "windows": 0.78,
+    "macos": 0.18,
+    "linux": 0.04,
+    "evidence": ["approx-2026"]
+  },
+  "os": {
+    "windows": {
+      "bitness": "64",
+      "arch": [["x86", 1.0]],
+      "platform_version": [["19.0.0", 0.6, "Windows 11 24H2 or later"], ["10.0.0", 0.4, "Windows 10 22H2"]],
+      "evidence": ["approx-2026", "chromium-source"]
+    },
+    "macos": {
+      "bitness": "64",
+      "arch": [["arm", 0.75], ["x86", 0.25]],
+      "platform_version": [["26.1.0", 0.5, "macOS 26"], ["15.7.2", 0.35, "macOS 15"], ["14.8.2", 0.15, "macOS 14"]],
+      "evidence": ["approx-2026", "chromium-source"]
+    },
+    "linux": {
+      "bitness": "64",
+      "arch": [["x86", 1.0]],
+      "platform_version": [["6.8.0", 0.5, "Ubuntu 24.04 kernel"], ["6.14.0", 0.5, "newer distribution kernel"]],
+      "evidence": ["approx-2026", "chromium-source"]
+    }
+  }
+}

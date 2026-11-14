@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "evidence": {
+    "ref-156-win": "Real Chrome 156 with Russian UI: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7 (2026-11-14)",
+    "common": "Typical Chrome language list for the country's default UI language; not captured by us"
+  },
+  "default_country": "US",
+  "countries": {
+    "RU": {"languages": ["ru-RU", "ru", "en-US", "en"], "evidence": ["ref-156-win"]},
+    "BY": {"languages": ["ru-RU", "ru", "en-US", "en"], "evidence": ["common"]},
+    "KZ": {"languages": ["ru-RU", "ru", "en-US", "en"], "evidence": ["common"]},
+    "UA": {"languages": ["uk-UA", "uk", "en-US", "en"], "evidence": ["common"]},
+    "US": {"languages": ["en-US", "en"], "evidence": ["common"]},
+    "GB": {"languages": ["en-GB", "en-US", "en"], "evidence": ["common"]},
+    "CA": {"languages": ["en-CA", "en-US", "en"], "evidence": ["common"]},
+    "AU": {"languages": ["en-AU", "en-US", "en"], "evidence": ["common"]},
+    "DE": {"languages": ["de-DE", "de", "en-US", "en"], "evidence": ["common"]},
+    "AT": {"languages": ["de-AT", "de", "en-US", "en"], "evidence": ["common"]},
+    "FR": {"languages": ["fr-FR", "fr", "en-US", "en"], "evidence": ["common"]},
+    "ES": {"languages": ["es-ES", "es", "en-US", "en"], "evidence": ["common"]},
+    "IT": {"languages": ["it-IT", "it", "en-US", "en"], "evidence": ["common"]},
+    "NL": {"languages": ["nl-NL", "nl", "en-US", "en"], "evidence": ["common"]},
+    "PL": {"languages": ["pl-PL", "pl", "en-US", "en"], "evidence": ["common"]},
+    "TR": {"languages": ["tr-TR", "tr", "en-US", "en"], "evidence": ["common"]},
+    "BR": {"languages": ["pt-BR", "pt", "en-US", "en"], "evidence": ["common"]},
+    "PT": {"languages": ["pt-PT", "pt", "en-US", "en"], "evidence": ["common"]},
+    "MX": {"languages": ["es-MX", "es", "en-US", "en"], "evidence": ["common"]},
+    "JP": {"languages": ["ja", "en-US", "en"], "evidence": ["common"]},
+    "KR": {"languages": ["ko-KR", "ko", "en-US", "en"], "evidence": ["common"]},
+    "CN": {"languages": ["zh-CN", "zh"], "evidence": ["common"]},
+    "IN": {"languages": ["en-IN", "en-US", "en"], "evidence": ["common"]}
+  }
+}

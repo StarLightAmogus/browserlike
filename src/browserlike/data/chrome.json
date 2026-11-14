@@ -1,0 +1,285 @@
+{
+  "schema": 1,
+  "family": "chrome",
+  "evidence": {
+    "ref-156-win": "Real Chrome 156 on Windows opening https://tls.peet.ws/api/all, captured 2026-11-14 (tests/fixtures/chrome-156-windows.json)",
+    "stand-2026-11-14": "fingerprint-lab run 2026-11-14_103504: httpcloak 1.7.3 chrome-latest (155), wreq 0.13 Chrome154, curl_cffi 0.17 chrome (152) against tls.peet.ws",
+    "httpcloak-1.7.3": "httpcloak 1.7.3 preset data (describe_preset chrome-155-windows and its HTTP/1.1 output); httpcloak captures real browsers, we have not re-checked these items against our own capture",
+    "versionhistory-2026-11-14": "versionhistory.googleapis.com, Chrome stable channel, fetched 2026-11-14",
+    "fetch-spec": "Fetch / Fetch Metadata / Client Hints / Referrer Policy specifications",
+    "best-guess": "No capture yet; position chosen by analogy, verify before relying on it"
+  },
+  "tls_eras": [
+    {
+      "id": "cb7bf5808d99",
+      "ja4": "t13d1517h2_8daaf6152771_cb7bf5808d99",
+      "ja4_resumed": "t13d1518h2_8daaf6152771_e2d80978ab2e",
+      "since": 152,
+      "until": 156,
+      "evidence": [
+        "ref-156-win",
+        "stand-2026-11-14"
+      ],
+      "note": "Trust Anchor IDs extension (51764) and a GREASE value in signature_algorithms since 152; ML-DSA 0x0904-0x0906 in signature_algorithms"
+    }
+  ],
+  "versions": [
+    {
+      "major": 156,
+      "verified": true,
+      "weight": 0.75,
+      "full": {
+        "windows": "156.0.8078.82",
+        "macos": "156.0.8078.82",
+        "linux": "156.0.8078.79"
+      },
+      "evidence": [
+        "ref-156-win",
+        "versionhistory-2026-11-14"
+      ]
+    },
+    {
+      "major": 155,
+      "verified": true,
+      "weight": 0.25,
+      "full": {
+        "windows": "155.0.8059.86",
+        "macos": "155.0.8059.86",
+        "linux": "155.0.8059.84"
+      },
+      "evidence": [
+        "httpcloak-1.7.3",
+        "stand-2026-11-14",
+        "versionhistory-2026-11-14"
+      ]
+    },
+    {
+      "major": 157,
+      "verified": false,
+      "weight": 0.0,
+      "full": {
+        "windows": "157.0.8103.80",
+        "macos": "157.0.8103.80",
+        "linux": "157.0.8103.78"
+      },
+      "evidence": [
+        "versionhistory-2026-11-14"
+      ],
+      "note": "Current stable. TLS and headers not captured yet: to enable it, add a 157 reference, extend the TLS era and set verified/weight."
+    }
+  ],
+  "user_agent": {
+    "template": {
+      "windows": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{major}.0.0.0 Safari/537.36",
+      "macos": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{major}.0.0.0 Safari/537.36",
+      "linux": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{major}.0.0.0 Safari/537.36"
+    },
+    "platform_token": {
+      "windows": "Windows",
+      "macos": "macOS",
+      "linux": "Linux"
+    },
+    "evidence": [
+      "ref-156-win",
+      "httpcloak-1.7.3"
+    ],
+    "note": "Reduced User-Agent: minor version zeroed, OS tokens frozen (macOS always 10_15_7)"
+  },
+  "accept": {
+    "document": [
+      {
+        "since": 155,
+        "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/jxl,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "evidence": [
+          "ref-156-win",
+          "httpcloak-1.7.3"
+        ]
+      },
+      {
+        "since": 0,
+        "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "evidence": [
+          "stand-2026-11-14"
+        ]
+      }
+    ],
+    "empty": [
+      {
+        "since": 0,
+        "value": "*/*",
+        "evidence": [
+          "httpcloak-1.7.3"
+        ]
+      }
+    ]
+  },
+  "accept_encoding": {
+    "secure": "gzip, deflate, br, zstd",
+    "insecure": "gzip, deflate",
+    "evidence": [
+      "ref-156-win",
+      "best-guess"
+    ],
+    "note": "Brotli and zstd are advertised over HTTPS only"
+  },
+  "priority": {
+    "document": "u=0, i",
+    "empty": "u=1, i",
+    "evidence": [
+      "ref-156-win",
+      "httpcloak-1.7.3"
+    ],
+    "note": "HTTP/2 and HTTP/3 only; Chrome does not send it over HTTP/1.1"
+  },
+  "client_hints": {
+    "low_entropy": [
+      "sec-ch-ua",
+      "sec-ch-ua-mobile",
+      "sec-ch-ua-platform"
+    ],
+    "high_entropy": [
+      "sec-ch-ua-arch",
+      "sec-ch-ua-bitness",
+      "sec-ch-ua-form-factors",
+      "sec-ch-ua-full-version",
+      "sec-ch-ua-full-version-list",
+      "sec-ch-ua-model",
+      "sec-ch-ua-platform-version",
+      "sec-ch-ua-wow64"
+    ],
+    "evidence": [
+      "fetch-spec",
+      "httpcloak-1.7.3"
+    ],
+    "note": "Order inside the header block comes from header_order below; high-entropy positions are unverified"
+  },
+  "header_order": {
+    "navigate": {
+      "names": [
+        "connection",
+        "cache-control",
+        "sec-ch-ua",
+        "sec-ch-ua-arch",
+        "sec-ch-ua-bitness",
+        "sec-ch-ua-form-factors",
+        "sec-ch-ua-full-version",
+        "sec-ch-ua-full-version-list",
+        "sec-ch-ua-mobile",
+        "sec-ch-ua-model",
+        "sec-ch-ua-platform",
+        "sec-ch-ua-platform-version",
+        "sec-ch-ua-wow64",
+        "upgrade-insecure-requests",
+        "user-agent",
+        "content-type",
+        "content-length",
+        "accept",
+        "origin",
+        "sec-fetch-site",
+        "sec-fetch-mode",
+        "sec-fetch-user",
+        "sec-fetch-dest",
+        "referer",
+        "if-none-match",
+        "if-modified-since",
+        "*",
+        "accept-encoding",
+        "accept-language",
+        "cookie",
+        "priority"
+      ],
+      "verified": [
+        "sec-ch-ua",
+        "sec-ch-ua-mobile",
+        "sec-ch-ua-platform",
+        "upgrade-insecure-requests",
+        "user-agent",
+        "accept",
+        "sec-fetch-site",
+        "sec-fetch-mode",
+        "sec-fetch-user",
+        "sec-fetch-dest",
+        "accept-encoding",
+        "accept-language",
+        "priority"
+      ],
+      "evidence": [
+        "ref-156-win",
+        "httpcloak-1.7.3",
+        "best-guess"
+      ],
+      "note": "Names in 'verified' come from the real Chrome 156 capture; the rest follow httpcloak's chrome-155 order. '*' marks where unknown custom headers go (best guess)."
+    },
+    "subresource": {
+      "names": [
+        "connection",
+        "pragma",
+        "cache-control",
+        "origin",
+        "sec-ch-ua-platform",
+        "sec-ch-ua-platform-version",
+        "user-agent",
+        "sec-ch-ua",
+        "sec-ch-ua-arch",
+        "sec-ch-ua-bitness",
+        "sec-ch-ua-form-factors",
+        "sec-ch-ua-full-version",
+        "sec-ch-ua-full-version-list",
+        "sec-ch-ua-mobile",
+        "sec-ch-ua-model",
+        "sec-ch-ua-wow64",
+        "*",
+        "content-type",
+        "content-length",
+        "accept",
+        "sec-fetch-site",
+        "sec-fetch-mode",
+        "sec-fetch-dest",
+        "sec-fetch-storage-access",
+        "referer",
+        "if-none-match",
+        "if-modified-since",
+        "accept-encoding",
+        "accept-language",
+        "cookie",
+        "priority"
+      ],
+      "verified": [],
+      "evidence": [
+        "httpcloak-1.7.3",
+        "best-guess"
+      ],
+      "note": "fetch()/XHR order as in httpcloak's chrome-155 subresource order; not captured from a real browser by us yet"
+    }
+  },
+  "http1_casing": {
+    "names": {
+      "connection": "Connection",
+      "cache-control": "Cache-Control",
+      "pragma": "Pragma",
+      "upgrade-insecure-requests": "Upgrade-Insecure-Requests",
+      "user-agent": "User-Agent",
+      "content-type": "Content-Type",
+      "content-length": "Content-Length",
+      "accept": "Accept",
+      "origin": "Origin",
+      "sec-fetch-site": "Sec-Fetch-Site",
+      "sec-fetch-mode": "Sec-Fetch-Mode",
+      "sec-fetch-user": "Sec-Fetch-User",
+      "sec-fetch-dest": "Sec-Fetch-Dest",
+      "sec-fetch-storage-access": "Sec-Fetch-Storage-Access",
+      "referer": "Referer",
+      "if-none-match": "If-None-Match",
+      "if-modified-since": "If-Modified-Since",
+      "accept-encoding": "Accept-Encoding",
+      "accept-language": "Accept-Language",
+      "cookie": "Cookie",
+      "authorization": "Authorization",
+      "priority": "Priority"
+    },
+    "evidence": [
+      "httpcloak-1.7.3"
+    ],
+    "note": "Client hints (sec-ch-ua*) keep lower case on HTTP/1.1; HTTP/2 lower-cases everything"
+  }
+}
