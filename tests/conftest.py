@@ -7,6 +7,12 @@ import pytest
 from .helpers import load_fixture
 
 
+def pytest_configure(config: pytest.Config) -> None:
+    # Our own warnings fail a test unless it expects them. Added here rather than
+    # in pyproject so the package is not imported before coverage starts.
+    config.addinivalue_line("filterwarnings", "error::browserlike.exceptions.BrowserlikeWarning")
+
+
 def pytest_addoption(parser: pytest.Parser) -> None:
     parser.addoption("--run-network", action="store_true", help="run tests that talk to tls.peet.ws")
 
