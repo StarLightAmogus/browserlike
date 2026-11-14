@@ -1,0 +1,101 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "browserlike"
+version = "0.1.0.dev0"
+description = "Drop-in replacement for requests that looks like one real browser on every layer: TLS, HTTP/2, headers and client hints."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "browserlike contributors" }]
+keywords = ["requests", "http", "http2", "tls", "ja4", "fingerprint", "impersonate", "browser", "scraping"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Internet :: WWW/HTTP",
+  "Typing :: Typed",
+]
+dependencies = [
+  "requests>=2.31",
+  "urllib3>=2.0",
+  "publicsuffixlist>=1.0",
+]
+
+[project.optional-dependencies]
+httpcloak = ["httpcloak>=1.7.3,<1.8"]
+curl = ["curl_cffi>=0.17,<0.18"]
+wreq = ["wreq>=0.13,<0.14"]
+all = ["browserlike[httpcloak,curl,wreq]"]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=5",
+  "ruff>=0.8",
+  "mypy>=1.13",
+  "types-requests",
+  "h2>=4.1",
+  "trustme>=1.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/browserlike"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/browserlike", "tests", "docs", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "N", "A", "C4", "PT", "PIE", "RET", "PL"]
+ignore = [
+  "PLR0913",  # constructors mirror requests' keyword-rich API
+  "PLR2004",  # status codes and similar literals read better inline
+  "PLR0911",
+  "PLR0912",
+  "PLC0415",  # optional engines are imported lazily on purpose
+  "RUF022",   # __all__ is grouped by meaning, not sorted
+  "N818",     # ChallengeDetected / EngineUnavailable read better without an Error suffix
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["PLR2004", "S101", "PLC0415"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/browserlike"]
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["httpcloak", "httpcloak.*", "curl_cffi", "curl_cffi.*", "wreq", "wreq.*", "publicsuffixlist"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "network: talks to tls.peet.ws; skipped unless --run-network is given",
+  "engine: drives a real engine against the local echo server",
+]
+filterwarnings = ["error::browserlike.exceptions.BrowserlikeWarning"]
+
+[tool.coverage.run]
+source = ["browserlike"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
