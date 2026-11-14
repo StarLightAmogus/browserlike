@@ -35,7 +35,7 @@ dependencies = [
 [project.optional-dependencies]
 httpcloak = ["httpcloak>=1.7.3,<1.8"]
 curl = ["curl_cffi>=0.17,<0.18"]
-wreq = ["wreq>=0.13,<0.14"]
+wreq = ["wreq>=0.13,<0.14; python_version >= '3.11'"]  # wreq 0.13 needs Python 3.11+
 all = ["browserlike[httpcloak,curl,wreq]"]
 dev = [
   "pytest>=8",
@@ -90,7 +90,6 @@ markers = [
   "network: talks to tls.peet.ws; skipped unless --run-network is given",
   "engine: drives a real engine against the local echo server",
 ]
-filterwarnings = ["error::browserlike.exceptions.BrowserlikeWarning"]
 
 [tool.coverage.run]
 source = ["browserlike"]

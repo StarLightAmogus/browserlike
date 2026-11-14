@@ -7,7 +7,9 @@ redirects are off.
 Known differences, seen on the local echo server:
 
 * on HTTP/2 the cookie header is sent as one field, Chrome splits it;
-* on HTTP/1.1 ``host`` goes last and lower-case, Chrome sends ``Host`` first.
+* on HTTP/1.1 ``host`` goes last and lower-case, Chrome sends ``Host`` first;
+* wreq would send ``Priority`` on HTTP/1.1 too; the transport drops it once it
+  has seen that an origin speaks HTTP/1.1 (Chrome never sends it there).
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ from datetime import timedelta
 from typing import Any, ClassVar
 
 from ..identity.model import BrowserFamily
+from ..sites import Origin
 from .base import (
     Engine,
     EngineProfile,
@@ -94,11 +97,16 @@ class _WreqTransport(Transport):
 
         self._header_map = HeaderMap
         self._orig_header_map = OrigHeaderMap
+        self._http1_origins: set[str] = set()
 
     def send(self, request: WireRequest) -> WireResponse:
+        origin = Origin.of(request.url).serialize()
+        wire_headers = request.headers
+        if origin in self._http1_origins:
+            wire_headers = wire_headers.without("priority")
         headers = self._header_map()
         order = self._orig_header_map()
-        for name, value in request.headers:
+        for name, value in wire_headers:
             headers.append(name, value)
             order.insert(name)
         kwargs: dict[str, Any] = {"headers": headers, "orig_headers": order, "default_headers": False}
@@ -118,6 +126,8 @@ class _WreqTransport(Transport):
 
         pairs = tuple((_text(name), _text(value)) for name, value in response.headers)
         version = "HTTP/2" if "2" in str(response.version) else "HTTP/1.1"
+        if version == "HTTP/1.1":
+            self._http1_origins.add(origin)
         return WireResponse(
             status=response.status.as_int(),
             headers=pairs,
