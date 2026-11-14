@@ -16,7 +16,7 @@ from http.cookiejar import Cookie
 from pathlib import Path
 from typing import Any
 
-from requests.cookies import RequestsCookieJar, create_cookie
+from requests.cookies import RequestsCookieJar
 
 from .identity import Identity
 
@@ -36,6 +36,7 @@ def cookie_to_dict(cookie: Cookie) -> dict[str, Any]:
         "expires": cookie.expires,
         "discard": cookie.discard,
         "port": cookie.port,
+        "port_specified": cookie.port_specified,
         "domain_initial_dot": cookie.domain_initial_dot,
         "domain_specified": cookie.domain_specified,
         "path_specified": cookie.path_specified,
@@ -49,10 +50,27 @@ def cookie_to_dict(cookie: Cookie) -> dict[str, Any]:
 
 def cookie_from_dict(data: Mapping[str, Any]) -> Cookie:
     """Inverse of :func:`cookie_to_dict`."""
-    fields = dict(data)
-    name, value = fields.pop("name"), fields.pop("value")
-    cookie: Cookie = create_cookie(name, value, **fields)  # type: ignore[no-untyped-call]
-    return cookie
+    domain = str(data.get("domain", ""))
+    port = data.get("port")
+    return Cookie(
+        version=data.get("version", 0),
+        name=str(data["name"]),
+        value=data.get("value"),
+        port=port,
+        port_specified=bool(data.get("port_specified", port is not None)),
+        domain=domain,
+        domain_specified=bool(data.get("domain_specified", bool(domain))),
+        domain_initial_dot=bool(data.get("domain_initial_dot", domain.startswith("."))),
+        path=str(data.get("path", "/")),
+        path_specified=bool(data.get("path_specified", True)),
+        secure=bool(data.get("secure", False)),
+        expires=data.get("expires"),
+        discard=bool(data.get("discard", data.get("expires") is None)),
+        comment=data.get("comment"),
+        comment_url=data.get("comment_url"),
+        rest=dict(data.get("rest") or {}),
+        rfc2109=bool(data.get("rfc2109", False)),
+    )
 
 
 @dataclass(frozen=True)

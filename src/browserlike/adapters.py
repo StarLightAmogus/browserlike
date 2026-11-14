@@ -252,7 +252,7 @@ class BrowserAdapter(BaseAdapter):
     def context_for(self, method: str, url: str, headers: Mapping[str, str] | None = None) -> RequestContext:
         """The request context a call would get now, without sending anything."""
         pairs = [(k, v) for k, v in (headers or {}).items()]
-        return self._context(method.upper(), url, pairs)
+        return self._context(method.upper(), url, pairs, consume=False)
 
     # --- internals ---------------------------------------------------------------------
 
@@ -266,8 +266,10 @@ class BrowserAdapter(BaseAdapter):
             pairs.append((name, value))
         return pairs
 
-    def _context(self, method: str, url: str, caller: list[Header]) -> RequestContext:
-        pending, self._pending_redirect = self._pending_redirect, None
+    def _context(self, method: str, url: str, caller: list[Header], *, consume: bool = True) -> RequestContext:
+        pending = self._pending_redirect
+        if consume:
+            self._pending_redirect = None
         if pending is not None and pending[0] == _url_key(url):
             return pending[1].redirected(url, method)
 
