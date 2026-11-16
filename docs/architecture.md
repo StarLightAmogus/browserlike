@@ -52,6 +52,9 @@ requests.Session.request()                      (browserlike.Session adds kind=)
 - **No network on its own.** The PSL is bundled; nothing is fetched at import or in the background.
 - **Strategies behind ABCs.** New browsers implement `BrowserProfile`, new engines `Engine`/`Transport`,
   new vendors `ChallengeRule`; nothing else changes.
+- **Any engine may be missing.** httpcloak is a dependency only where it has wheels; curl_cffi and wreq
+  are extras. Engine libraries are imported lazily, the package imports without any of them, and
+  `resolve_engine` takes the first one installed in `ENGINES` order.
 
 ## Adding a Chrome version
 

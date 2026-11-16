@@ -55,12 +55,13 @@ def resolve_engine(engine: str | Engine | None = None) -> Engine:
             if cls.is_available():
                 return cls()
         raise EngineUnavailable(
-            "no engine installed; install one with: pip install 'browserlike[httpcloak]' (or [curl], [wreq])"
+            "no engine installed: httpcloak, the default engine, has no wheel for this platform or was removed; "
+            "add another one with: pip install 'browserlike[curl]' (or [wreq])"
         )
     for cls in ENGINES:
         if cls.name == engine:
             if not cls.is_available():
-                raise EngineUnavailable(f"engine {engine!r} is not installed")
+                raise EngineUnavailable(f"engine {engine!r} is not installed; install it with: {cls.install_hint}")
             return cls()
     known = ", ".join(cls.name for cls in ENGINES)
     raise EngineUnavailable(f"unknown engine {engine!r}; known: {known}")

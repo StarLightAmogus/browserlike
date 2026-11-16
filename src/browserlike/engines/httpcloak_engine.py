@@ -130,6 +130,7 @@ class HttpcloakEngine(Engine):
     """
 
     name: ClassVar[str] = "httpcloak"
+    install_hint: ClassVar[str] = "pip install httpcloak"
 
     def __init__(self, *, ech: bool = False) -> None:
         self._ech = ech

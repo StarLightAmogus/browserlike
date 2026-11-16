@@ -19,8 +19,9 @@ All notable changes are documented here. The format follows
 - Request-kind inference (`navigate` / `fetch`) and `kind=` override. Navigation chaining within a
   site.
 - `Accept-CH` store per origin and a `Critical-CH` retry.
-- Engines: httpcloak (default), curl_cffi, wreq. Engine-side cookies, redirects and header injection
-  are off.
+- Engines: httpcloak (the default, a dependency on every platform it has wheels for), curl_cffi
+  (`curl` extra) and wreq (`wreq` extra). Engine-side cookies, redirects and header injection are
+  off.
 - Challenge detection for nine anti-bot vendors, `raise_on_challenge`, `challenge_handler`.
 - `Session.save()` / `Session.load()`: identity, cookies, client hints, navigation.
 - Module-level `get/post/...` and re-exports, so `import browserlike as requests` works.

@@ -114,6 +114,7 @@ class CurlCffiEngine(Engine):
     """Fallback engine with a near-Chrome TLS (see the module notes)."""
 
     name: ClassVar[str] = "curl_cffi"
+    install_hint: ClassVar[str] = "pip install 'browserlike[curl]'"
 
     @classmethod
     def is_available(cls) -> bool:

@@ -35,3 +35,22 @@ jobs:
       - run: uv pip install -e ".[all,dev]"
       # Offline only: unit tests and engine tests against the local echo server.
       - run: pytest --cov --cov-report=term
+
+  bare-install:
+    # httpcloak is a dependency: a plain install must bring a working default engine on every
+    # platform the dependency's marker covers.
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv pip install -e .
+      - run: python -c "import browserlike; e = browserlike.available_engines(); assert e == ['httpcloak'], e"

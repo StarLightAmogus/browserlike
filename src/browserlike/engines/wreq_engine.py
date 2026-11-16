@@ -144,6 +144,7 @@ class WreqEngine(Engine):
     """Optional engine; Chrome 154 profile in the same TLS era as 152-156."""
 
     name: ClassVar[str] = "wreq"
+    install_hint: ClassVar[str] = "pip install 'browserlike[wreq]' (Python 3.11+)"
 
     @classmethod
     def is_available(cls) -> bool:

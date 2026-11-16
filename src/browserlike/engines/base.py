@@ -128,9 +128,15 @@ class Transport(ABC):
 
 
 class Engine(ABC):
-    """Factory of transports with a given browser fingerprint."""
+    """Factory of transports with a given browser fingerprint.
+
+    Attributes:
+        name: Engine name, as passed to ``Session(engine=...)``.
+        install_hint: Command that installs the backing library, shown when it is missing.
+    """
 
     name: ClassVar[str]
+    install_hint: ClassVar[str] = ""
 
     @classmethod
     @abstractmethod

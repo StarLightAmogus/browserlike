@@ -23,13 +23,20 @@ on top of an impersonating engine, behind the `requests` API.
 
 ## Install
 
-Not on PyPI yet; install from a checkout. The extra picks the engine:
+Not on PyPI yet; install from a checkout. The default engine, httpcloak, comes with the package;
+the extras add the others:
 
 ```bash
-pip install -e ".[httpcloak]"   # default engine, recommended
-pip install -e ".[curl]"        # curl_cffi fallback
-pip install -e ".[all]"         # all engines
+pip install -e .            # with httpcloak, the default engine
+pip install -e ".[curl]"    # + curl_cffi fallback
+pip install -e ".[wreq]"    # + wreq (Python 3.11+)
+pip install -e ".[all]"     # every engine
 ```
+
+httpcloak ships wheels only, for Linux x86_64 and aarch64 (glibc), macOS and Windows x64. On other
+platforms, such as Windows on Arm, browserlike installs without it: add the `curl` extra. Two cases
+slip past the platform marker and fail to install: Alpine (musl) and 32-bit Python on 64-bit
+Windows. There, install with `--no-deps` and add the other dependencies and curl_cffi by hand.
 
 ## Usage
 
