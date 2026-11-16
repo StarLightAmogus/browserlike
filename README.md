@@ -1,5 +1,9 @@
 # browserlike
 
+[![CI](https://github.com/StarLightAmogus/browserlike/actions/workflows/ci.yml/badge.svg)](https://github.com/StarLightAmogus/browserlike/actions/workflows/ci.yml)
+[![Python 3.10–3.14](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 A drop-in replacement for [`requests`](https://requests.readthedocs.io/) that looks like one real
 browser on every layer the server can see, with one consistent identity per session and no browser
 to launch.
@@ -23,14 +27,14 @@ on top of an impersonating engine, behind the `requests` API.
 
 ## Install
 
-Not on PyPI yet; install from a checkout. The default engine, httpcloak, comes with the package;
+Not on PyPI yet; install from GitHub. The default engine, httpcloak, comes with the package;
 the extras add the others:
 
 ```bash
-pip install -e .            # with httpcloak, the default engine
-pip install -e ".[curl]"    # + curl_cffi fallback
-pip install -e ".[wreq]"    # + wreq (Python 3.11+)
-pip install -e ".[all]"     # every engine
+pip install "browserlike @ git+https://github.com/StarLightAmogus/browserlike"        # with httpcloak, the default engine
+pip install "browserlike[curl] @ git+https://github.com/StarLightAmogus/browserlike"  # + curl_cffi fallback
+pip install "browserlike[wreq] @ git+https://github.com/StarLightAmogus/browserlike"  # + wreq (Python 3.11+)
+pip install "browserlike[all] @ git+https://github.com/StarLightAmogus/browserlike"   # every engine
 ```
 
 httpcloak ships wheels only, for Linux x86_64 and aarch64 (glibc), macOS and Windows x64. On other
@@ -171,7 +175,9 @@ pytest                  # unit + local engine tests, offline
 pytest --run-network    # + one request per engine to tls.peet.ws
 ```
 
-See [docs/architecture.md](docs/architecture.md) for the design and [CHANGELOG.md](CHANGELOG.md).
+See [docs/architecture.md](docs/architecture.md) for the design, [CONTRIBUTING.md](CONTRIBUTING.md)
+for how to contribute (including adding a Chrome version) and [CHANGELOG.md](CHANGELOG.md). Report
+security issues privately, as described in [SECURITY.md](SECURITY.md).
 
 ## Responsible use
 

@@ -7,7 +7,8 @@ A drop-in replacement for `requests` that keeps one browser identity per session
 
 - **Never push, add a git remote, create a GitHub repository or upload to PyPI** unless the owner
   says so in this session. Commits stay local.
-- Git identity is repo-local and neutral (`browserlike <browserlike@localhost>`). Never commit with a
+- Commits use only the owner's GitHub noreply address, set repo-local
+  (`StarLightAmogus <109816864+StarLightAmogus@users.noreply.github.com>`). Never commit with a
   personal email.
 - Code, docstrings and docs are in English. Commits follow Conventional Commits.
 - **Browser facts go into `src/browserlike/data/*.json`, never into code.** Each fact names its

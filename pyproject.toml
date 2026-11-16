@@ -35,6 +35,12 @@ dependencies = [
   "httpcloak>=1.7.3,<1.8; sys_platform == 'darwin' or (sys_platform == 'linux' and (platform_machine == 'x86_64' or platform_machine == 'aarch64')) or (sys_platform == 'win32' and platform_machine == 'AMD64')",
 ]
 
+[project.urls]
+Homepage = "https://github.com/StarLightAmogus/browserlike"
+Repository = "https://github.com/StarLightAmogus/browserlike"
+Issues = "https://github.com/StarLightAmogus/browserlike/issues"
+Changelog = "https://github.com/StarLightAmogus/browserlike/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
 curl = ["curl_cffi>=0.17,<0.18"]
 wreq = ["wreq>=0.13,<0.14; python_version >= '3.11'"]  # wreq 0.13 needs Python 3.11+
