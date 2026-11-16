@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # Engine updates (httpcloak, curl_cffi, wreq) can change what goes on the wire: check them against
+  # a real-browser capture (see CONTRIBUTING.md) before merging.
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
