@@ -33,6 +33,7 @@ run it only when a change affects what goes on the wire.
   never in code. Each fact names its evidence and stays `verified: false` until a capture from a real
   browser backs it.
 - Code, docstrings and docs are in English. Full type hints, `mypy --strict` clean.
+- `README.ru.md` is the Russian translation of `README.md`: when you change one, update the other.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`,
   `docs:`, `test:`, `ci:`, `chore:`.
 - The library makes no network calls on its own.

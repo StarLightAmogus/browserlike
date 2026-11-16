@@ -4,6 +4,8 @@
 [![Python 3.10–3.14](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+**English** | [Русский](README.ru.md)
+
 A drop-in replacement for [`requests`](https://requests.readthedocs.io/) that looks like one real
 browser on every layer the server can see, with one consistent identity per session and no browser
 to launch.
