@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "browserlike"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "Drop-in replacement for requests that looks like one real browser on every layer: TLS, HTTP/2, headers and client hints."
 readme = "README.md"
 license = "MIT"

@@ -23,7 +23,7 @@ with each other, and must not change mid-session. browserlike is that layer. It 
 once (browser version, OS, languages) and renders every request the way that browser would send it,
 on top of an impersonating engine, behind the `requests` API.
 
-> Status: alpha (0.1.0, unreleased). Chrome 155–156 on Windows, macOS and Linux.
+> Status: alpha (0.1.0). Chrome 155–156 on Windows, macOS and Linux.
 
 ## Install
 
