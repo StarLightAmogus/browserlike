@@ -1,0 +1,43 @@
+name: New Chrome version
+description: Share a capture from a Chrome version that browserlike does not support yet.
+title: "Chrome <major>: capture"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Open https://tls.peet.ws/api/all in that Chrome (a regular window, no extensions that change
+        headers) and paste the JSON below. Replace your IP address with "redacted" first: the
+        top-level `ip` and every `src_ip`. See CONTRIBUTING.md, "Adding a Chrome version".
+  - type: input
+    id: version
+    attributes:
+      label: Full Chrome version
+      description: From chrome://version
+      placeholder: "157.0.8103.80"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows 11
+        - Windows 10
+        - macOS (Apple silicon)
+        - macOS (Intel)
+        - Linux
+    validations:
+      required: true
+  - type: textarea
+    id: capture
+    attributes:
+      label: tls.peet.ws capture (IP removed)
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything unusual, for example a VPN or proxy in the path.
