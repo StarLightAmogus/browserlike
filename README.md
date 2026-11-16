@@ -186,6 +186,12 @@ traffic you are authorized to send: your own services, testing, research, and da
 respects the target site's terms, robots rules and applicable law. It does not and will not include
 tools for bypassing authentication or attacking services.
 
+## Contact
+
+Questions and feedback: Telegram [t.me/RickSoftware](https://t.me/RickSoftware). Bugs and feature requests go to
+[GitHub issues](https://github.com/StarLightAmogus/browserlike/issues); security issues follow
+[SECURITY.md](SECURITY.md).
+
 ## License
 
 MIT

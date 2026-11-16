@@ -8,4 +8,4 @@ Harassment, insults and personal attacks are not accepted in issues, pull reques
 project space.
 
 To report unacceptable behaviour, use GitHub's **Report content** option on the comment, issue or
-pull request, or contact the maintainer, [StarLightAmogus](https://github.com/StarLightAmogus).
+pull request, or contact the maintainer on Telegram, [t.me/RickSoftware](https://t.me/RickSoftware).

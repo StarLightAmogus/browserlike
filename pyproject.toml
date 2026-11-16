@@ -40,6 +40,7 @@ Homepage = "https://github.com/StarLightAmogus/browserlike"
 Repository = "https://github.com/StarLightAmogus/browserlike"
 Issues = "https://github.com/StarLightAmogus/browserlike/issues"
 Changelog = "https://github.com/StarLightAmogus/browserlike/blob/main/CHANGELOG.md"
+Telegram = "https://t.me/RickSoftware"
 
 [project.optional-dependencies]
 curl = ["curl_cffi>=0.17,<0.18"]
